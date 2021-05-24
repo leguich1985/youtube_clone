@@ -21,7 +21,7 @@ function getVideoRoutes() {
 }
 
 export async function getVideoViews(videos) {
-  for (video of videos) {
+  for (let video of videos) {
     const views = await prisma.view.count({
       where: {
         videoId: {
@@ -29,12 +29,14 @@ export async function getVideoViews(videos) {
         },
       },
     });
+    // console.log("4---", video);
     video.views = views;
   }
   return videos;
 }
 
 async function getRecommendedVideos(req, res) {
+  console.log("start");
   let videos = await prisma.video.findMany({
     include: {
       user: true,
@@ -43,11 +45,13 @@ async function getRecommendedVideos(req, res) {
       createdAt: "desc",
     },
   });
+  // console.log("2---", videos);
   if (!videos.length) {
     return res.status(200).json({ videos: [] });
   }
 
   videos = await getVideoViews(videos);
+  console.log("3---", videos);
 
   res.status(200).json({ videos });
 }
