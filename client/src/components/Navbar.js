@@ -5,6 +5,7 @@ import Wrapper from "../styles/Navbar";
 import GoogleAuth from "./GoogleAuth";
 import { AppsIcon, HamburgerIcon, LogoIcon, SettingsIcon } from "./Icons";
 import Search from "./Search";
+import UploadVideo from "./UploadVideo";
 import UserDropdown from "./UserDropdown";
 
 function Navbar({ toggleSideBarOpen }) {
@@ -31,12 +32,8 @@ function Navbar({ toggleSideBarOpen }) {
       <Search />
 
       <ul>
-        <li>
-          <AppsIcon />
-        </li>
-        <li>
-          <SettingsIcon />
-        </li>
+        <li>{user ? <UploadVideo /> : <AppsIcon />}</li>
+        <li>{user ? <AppsIcon /> : <SettingsIcon />}</li>
         <li>{user ? <UserDropdown user={user} /> : <GoogleAuth />}</li>
       </ul>
     </Wrapper>
