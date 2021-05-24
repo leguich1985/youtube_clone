@@ -2,13 +2,19 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../styles/GlobalStyle";
 import { darkTheme } from "../styles/theme";
+import { BrowserRouter as Router } from "react-router-dom";
+import { AuthProvider } from "../context/auth-context";
 
 function AppProviders({ children }) {
   return (
-    <ThemeProvider theme={darkTheme}>
-      <GlobalStyle />
-      {children}
-    </ThemeProvider>
+    <Router>
+      <AuthProvider>
+        <ThemeProvider theme={darkTheme}>
+          <GlobalStyle />
+          {children}
+        </ThemeProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

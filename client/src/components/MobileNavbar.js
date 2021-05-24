@@ -7,20 +7,31 @@ import {
   TrendingIcon,
   WatchIcon,
 } from "./Icons";
+import { NavLink } from "react-router-dom";
 
 function MobileNavbar() {
   return (
     <Wrapper>
       <div className="icons">
-        <HomeIcon />
+        <NavLink to="/" exact activeClassName="active">
+          <HomeIcon />
+        </NavLink>
 
-        <TrendingIcon />
+        <NavLink to="/feed/trending" activeClassName="active">
+          <TrendingIcon />
+        </NavLink>
 
-        <SubIcon />
+        <NavLink to="/feed/subscriptions" activeClassName="active">
+          <SubIcon />
+        </NavLink>
 
-        <HistoryIcon />
+        <NavLink to="/feed/history" activeClassName="active">
+          <HistoryIcon />
+        </NavLink>
 
-        <WatchIcon />
+        <NavLink to="/feed/liked_videos" activeClassName="active">
+          <WatchIcon />
+        </NavLink>
       </div>
     </Wrapper>
   );
